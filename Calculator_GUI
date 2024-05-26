@@ -1,1 +1,69 @@
 
+import tkinter as tk
+from PIL import ImageTk, Image
+wind = tk.Tk()
+
+
+wind.title('Calculator')
+wind.iconbitmap('logo.ico')
+wind.geometry('350x350')
+bg=ImageTk.PhotoImage( file='/Users/pradyumnadeepakaher/Desktop/python_class/G̈UI/logo.png')
+bg_label = tk.Label(wind, image=bg).place(x=0,y=0)
+e1 = tk.Entry(wind, width=20)
+e1.pack(pady=10)  
+
+button_frame = tk.Frame(wind)
+button_frame.pack()
+
+def number_click(number):
+    e1.insert(tk.END, str(number))
+def clear():
+    e1.delete(0, tk.END)
+def evaluate():
+    try:
+     exp=e1.get()
+     res=eval(exp)
+     e1.delete(0,tk.END)
+     e1.insert(0,res)
+    except Exception as e:
+       e1.delete(0, tk.END) 
+       e1.insert(0,'Error')
+b1 = tk.Button(button_frame, text='7',bg='red',command=lambda:number_click(7))
+b1.grid(row=0, column=0)
+b2 = tk.Button(button_frame, text='8',command=lambda:number_click(8))
+b2.grid(row=0, column=1)
+b3 = tk.Button(button_frame, text='9',command=lambda:number_click(9))
+b3.grid(row=0, column=2)
+s1 = tk.Button(button_frame, text='/',command=lambda:number_click('/'))
+s1.grid(row=0, column=3)
+
+b4 = tk.Button(button_frame, text='4',command=lambda:number_click(4))
+b4.grid(row=1, column=0)
+b5 = tk.Button(button_frame, text='5',command=lambda:number_click(5))
+b5.grid(row=1, column=1)
+b6 = tk.Button(button_frame, text='6',command=lambda:number_click(6))
+b6.grid(row=1, column=2)
+s2 = tk.Button(button_frame, text='*',command=lambda:number_click('*'))
+s2.grid(row=1, column=3)
+
+b7 = tk.Button(button_frame, text='1',command=lambda:number_click(1))
+b7.grid(row=2, column=0)
+b8 = tk.Button(button_frame, text='2',command=lambda:number_click(2))
+b8.grid(row=2, column=1)
+b9 = tk.Button(button_frame, text='3',command=lambda:number_click(3))
+b9.grid(row=2, column=2)
+s3 = tk.Button(button_frame, text='-',command=lambda:number_click('-'))
+s3.grid(row=2, column=3)
+
+s4 = tk.Button(button_frame, text='C',command=clear)
+s4.grid(row=3, column=0)
+s5 = tk.Button(button_frame, text='0',command=lambda:number_click(0))
+s5.grid(row=3, column=1)
+s6 = tk.Button(button_frame, text='=',command=evaluate)
+s6.grid(row=3, column=2)
+s7 = tk.Button(button_frame, text='+',command=lambda:number_click('+'))
+s7.grid(row=3, column=3)
+
+
+
+wind.mainloop()
